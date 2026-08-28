@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector
+    android:height="24.0dip"
+    android:width="24.0dip"
+    android:viewportWidth="960.0"
+    android:viewportHeight="960.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <path
+        android:fillColor="@color/inv_icon_vector_default_tint"
+        android:pathData="M180,760L180,480Q180,355 267.5,267.5Q355,180 480,180Q605,180 692.5,267.5Q780,355 780,480L780,760Q780,793 756.5,816.5Q733,840 700,840L580,840L580,560L700,560L700,480Q700,388 636,324Q572,260 480,260Q388,260 324,324Q260,388 260,480L260,560L380,560L380,840L260,840Q227,840 203.5,816.5Q180,793 180,760ZM260,640L260,760L300,760L300,640L260,640ZM660,640L660,760L700,760L700,640L660,640Z" />
+</vector>
