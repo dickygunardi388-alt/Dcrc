@@ -1,0 +1,74 @@
+buka qs_panel.xml
+
+add ini di atas include footer impl
+
+<inv.exe.systemui.qs.ui.InvQsPanelView
+                android:id="@id/invos_qs_panel"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16.0dip"
+                android:layout_marginStart="10.0dip"
+                android:layout_marginEnd="10.0dip" />
+                
+ini step buat hide view qs bawaan                           
+                
+next buka qs_footer_impl.xml
+
+bikin width height nya jadi 0 kayak Gini
+
+<com.android.systemui.qs.QSFooterView
+    android:id="@id/qs_footer"
+    android:background="@android:color/transparent"
+    android:clickable="false"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_width="0.0dip"
+    android:layout_height="0.0dip"
+    android:layout_marginBottom="@dimen/qs_footers_margin_bottom"
+    android:baselineAligned="false"
+    android:layout_marginStart="@dimen/qs_footer_margin"
+    android:layout_marginEnd="@dimen/qs_footer_margin"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+next buka footer_actions.xml sama kayak tadi
+
+<LinearLayout
+    android:gravity="end|center"
+    android:layout_gravity="bottom"
+    android:background="@drawable/qs_footer_actions_background"
+    android:paddingTop="@dimen/qs_footer_actions_top_padding"
+    android:paddingBottom="@dimen/qs_footer_actions_bottom_padding"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:elevation="@dimen/qs_panel_elevation"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+    
+    
+next buka quick_settings_brightness_dialog.xml ( klo romnya ada show hide brightness abaikan ini )
+sama bikin width height 0
+
+<com.android.systemui.settings.brightness.BrightnessSliderView
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:id="@id/brightness_slider"
+    android:layout_width="0.0dip"
+    android:layout_height="0.0dip"
+    android:contentDescription="@string/accessibility_brightness"
+    android:importantForAccessibility="no"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+lanjut buka values/integers.xml Dan values-land/integers.xml 
+buat row qs tile bawaan jadi 0
+
+	<integer name="quick_qs_panel_max_rows">0</integer>
+    <integer name="quick_settings_max_rows">0</integer>
+    
+lanjut buka values/dimens.xml Dan values-land/dimens.xml sama
+cari dan ubah valuesnya
+
+<dimen name="footer_actions_height">0.0dip</dimen>
+<dimen name="qqs_layout_padding_bottom">0.0dip</dimen>
+<dimen name="qs_panel_padding_top">0.0dip</dimen>
+    
