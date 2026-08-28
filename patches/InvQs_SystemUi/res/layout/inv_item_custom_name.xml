@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inv.exe.systemui.qs.ui.InvLaunchableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:stateListAnimator="@null">
+    <LinearLayout
+        android:id="@+id/custom_name_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/inv_bg_pill"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp"
+        android:stateListAnimator="@null">
+
+        <ImageView
+            android:id="@+id/custom_name_icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/inv_ic_person"
+            android:tint="@color/inv_icon_primary" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/inv_component_outline" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/custom_name_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:padding="0dp"
+                android:textColor="@color/inv_text_primary"
+                android:textSize="14sp"
+                android:fontFamily="google-sans-medium" />
+
+            <TextView
+                android:id="@+id/custom_name_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@null"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:padding="0dp"
+                android:textColor="@color/inv_text_secondary"
+                android:textSize="12sp"
+                android:fontFamily="google-sans" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/inv_bg_badge"
+        android:contentDescription="Remove"
+        android:padding="4dp"
+        android:src="@drawable/inv_ic_remove"
+        android:tint="@color/inv_edit_badge_icon_tint"
+        android:elevation="0dp"
+        android:translationZ="0dp"
+        android:visibility="gone" />
+</inv.exe.systemui.qs.ui.InvLaunchableFrameLayout>

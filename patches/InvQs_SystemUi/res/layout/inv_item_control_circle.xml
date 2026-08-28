@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:stateListAnimator="@null">
+
+    <FrameLayout
+        android:id="@+id/circle_body"
+        android:layout_width="@dimen/inv_qs_control_grid_cell_size"
+        android:layout_height="@dimen/inv_qs_control_grid_cell_size"
+        android:layout_gravity="center"
+        android:background="@drawable/inv_bg_tile_off"
+        android:clickable="true"
+        android:focusable="true"
+        android:stateListAnimator="@null">
+
+        <ImageView
+            android:id="@+id/circle_icon"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center"
+            android:tint="@color/inv_icon_primary" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/inv_bg_badge"
+        android:contentDescription="Remove"
+        android:padding="4dp"
+        android:src="@drawable/inv_ic_remove"
+        android:tint="@color/inv_edit_badge_icon_tint"
+        android:elevation="0dp"
+        android:translationZ="0dp"
+        android:visibility="gone" />
+</FrameLayout>

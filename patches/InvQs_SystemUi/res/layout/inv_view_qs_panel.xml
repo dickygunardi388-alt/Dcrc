@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/header_normal"
+        android:paddingTop="8.0dip"
+        android:paddingBottom="16.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Space
+            android:layout_width="0.0dip"
+            android:layout_height="1.0dip"
+            android:layout_weight="1.0" />
+        <ImageButton
+            android:id="@+id/btn_edit"
+            android:background="@drawable/inv_bg_header_btn"
+            android:padding="9.0dip"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:src="@drawable/inv_ic_edit"
+            android:scaleType="centerInside"
+            android:tint="@color/inv_icon_primary"
+            android:contentDescription="Edit"
+            android:layout_marginEnd="8.0dip" />
+        <com.android.systemui.animation.LaunchableFrameLayout
+            android:id="@+id/btn_settings"
+            android:background="@drawable/inv_bg_header_btn"
+            android:padding="9.0dip"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:contentDescription="Settings"
+            android:layout_marginEnd="8.0dip">
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:src="@drawable/inv_ic_settings"
+                android:scaleType="centerInside"
+                android:tint="@color/inv_icon_primary"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no" />
+        </com.android.systemui.animation.LaunchableFrameLayout>
+        <ImageButton
+            android:id="@+id/btn_more"
+            android:background="@drawable/inv_bg_header_btn"
+            android:padding="9.0dip"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:src="@drawable/inv_ic_power_menu"
+            android:scaleType="centerInside"
+            android:tint="@color/inv_icon_primary"
+            android:contentDescription="Power menu" />
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/header_edit"
+        android:visibility="gone"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_marginTop="62.0dip"
+        android:layout_marginBottom="8.0dip">
+        <TextView
+            android:textSize="14.0sp"
+            android:textColor="@color/inv_icon_on_accent"
+            android:gravity="center"
+            android:layout_gravity="start|center"
+            android:id="@+id/btn_panel_settings"
+            android:background="@drawable/inv_bg_btn_secondary_pill"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:minWidth="132.0dip"
+            android:text="Panel settings"
+            android:fontFamily="google-sans-medium"
+            android:paddingStart="16.0dip"
+            android:paddingEnd="16.0dip" />
+        <ImageButton
+            android:layout_gravity="end|center"
+            android:id="@+id/btn_reset"
+            android:background="@drawable/inv_bg_header_btn"
+            android:padding="9.0dip"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:src="@drawable/inv_ic_restart_alt"
+            android:scaleType="centerInside"
+            android:tint="@color/inv_icon_primary"
+            android:contentDescription="Reset layout"
+            android:layout_marginEnd="86.0dip" />
+        <TextView
+            android:textSize="14.0sp"
+            android:textColor="@color/inv_icon_on_accent"
+            android:gravity="center"
+            android:layout_gravity="end|center"
+            android:id="@+id/btn_done"
+            android:background="@drawable/inv_bg_btn_done"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:minWidth="76.0dip"
+            android:text="Done"
+            android:fontFamily="google-sans-medium"
+            android:paddingStart="18.0dip"
+            android:paddingEnd="18.0dip" />
+    </FrameLayout>
+    <TextView
+        android:textSize="14.0sp"
+        android:textColor="@color/inv_text_secondary"
+        android:gravity="center"
+        android:id="@+id/txt_edit_hint"
+        android:paddingTop="8.0dip"
+        android:paddingBottom="10.0dip"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hold drag and drop to order" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/body_host"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/controls_column"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="16.0sp"
+                android:textColor="@color/inv_text_primary"
+                android:id="@+id/label_controls"
+                android:paddingBottom="8.0dip"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Controls"
+                android:fontFamily="google-sans-medium" />
+            <FrameLayout
+                android:id="@+id/controls_box"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/controls_host"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/tiles_column"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16.0dip">
+            <TextView
+                android:textSize="16.0sp"
+                android:textColor="@color/inv_text_primary"
+                android:id="@+id/label_tiles"
+                android:paddingBottom="8.0dip"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit tiles"
+                android:fontFamily="google-sans-medium" />
+            <FrameLayout
+                android:id="@+id/tiles_box"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/tiles_host"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <Space
+        android:layout_width="fill_parent"
+        android:layout_height="24.0dip" />
+</merge>

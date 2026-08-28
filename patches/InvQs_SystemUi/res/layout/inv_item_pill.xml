@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inv.exe.systemui.qs.ui.InvLaunchableFrameLayout
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:stateListAnimator="@null"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:id="@+id/pill_body"
+        android:background="@drawable/inv_bg_pill"
+        android:paddingLeft="14.0dip"
+        android:paddingRight="14.0dip"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stateListAnimator="@null">
+        <ImageView
+            android:id="@+id/pill_icon"
+            android:layout_width="22.0dip"
+            android:layout_height="22.0dip"
+            android:tint="@color/inv_icon_primary" />
+        <View
+            android:id="@+id/pill_divider"
+            android:background="@color/inv_component_outline"
+            android:layout_width="1.0dip"
+            android:layout_height="16.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip" />
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:id="@+id/pill_text_stack"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0">
+            <TextView
+                android:textSize="14.0sp"
+                android:textColor="@color/inv_text_primary"
+                android:ellipsize="end"
+                android:id="@+id/pill_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:fontFamily="google-sans-medium" />
+            <inv.exe.systemui.qs.ui.InvMarqueeTextView
+                android:textSize="12.0sp"
+                android:textColor="@color/inv_text_secondary"
+                android:ellipsize="marquee"
+                android:id="@+id/pill_summary"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:fontFamily="google-sans" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_gravity="start|center|top"
+        android:id="@+id/badge"
+        android:background="@drawable/inv_bg_badge"
+        android:padding="4.0dip"
+        android:visibility="gone"
+        android:layout_width="22.0dip"
+        android:layout_height="22.0dip"
+        android:src="@drawable/inv_ic_remove"
+        android:tint="@color/inv_edit_badge_icon_tint"
+        android:contentDescription="Remove"
+        android:translationZ="0.0dip"
+        android:elevation="0.0dip" />
+</inv.exe.systemui.qs.ui.InvLaunchableFrameLayout>
