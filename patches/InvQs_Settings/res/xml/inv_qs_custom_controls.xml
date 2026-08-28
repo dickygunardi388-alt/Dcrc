@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="Custom Controls">
+    <PreferenceCategory android:title="Custom name">
+        <EditTextPreference
+            android:persistent="false"
+            android:title="Username"
+            android:key="invos_qs_custom_username"
+            android:summary="Username" />
+        <EditTextPreference
+            android:persistent="false"
+            android:title="Subtitle"
+            android:key="invos_qs_custom_subtitle"
+            android:summary="Subtitle" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Custom image">
+        <Preference
+            android:persistent="false"
+            android:title="Select image"
+            android:key="invos_qs_custom_image_select"
+            android:summary="Choose an image from Gallery" />
+        <rvos.settings.support.preferences.SystemSettingSwitchPreference
+            android:title="Animate GIF"
+            android:key="invos_qs_custom_gif_animate"
+            android:summary="Animate GIF in QS; off shows the first frame only"
+            android:defaultValue="false" />
+        <rvos.settings.support.preferences.SystemSettingSeekBarPreference
+            android:max="255"
+            android:title="Image opacity"
+            android:key="invos_qs_custom_image_alpha"
+            android:summary="Set opacity for Custom Image"
+            android:defaultValue="255"
+            android:min="0" />
+    </PreferenceCategory>
+</PreferenceScreen>
