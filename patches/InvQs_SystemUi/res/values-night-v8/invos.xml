@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="inv_palette_accent">@android:color/system_accent1_100</color>
+    <color name="inv_palette_on_accent">@android:color/system_neutral1_900</color>
+    <color name="inv_palette_surface">@android:color/system_neutral1_900</color>
+    <color name="inv_palette_surface_variant">@android:color/system_neutral1_800</color>
+    <color name="inv_palette_on_surface">@android:color/system_neutral1_50</color>
+    <color name="inv_palette_on_surface_variant">@android:color/system_neutral2_200</color>
+    <color name="inv_palette_outline">@android:color/system_neutral2_600</color>
+    <color name="inv_media_full_art_scrim_start">#59000000</color>
+    <color name="inv_media_full_art_scrim_center">#33000000</color>
+    <color name="inv_media_full_art_scrim_end">#80000000</color>
+</resources>
