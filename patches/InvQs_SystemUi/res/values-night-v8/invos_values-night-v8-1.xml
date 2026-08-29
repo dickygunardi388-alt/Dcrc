@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="inv_palette_accent">#FFAAC7FF</color>
+    <color name="inv_palette_on_accent">#FF0A305F</color>
+    <color name="inv_palette_surface">#FF1B1B1F</color>
+    <color name="inv_palette_surface_variant">#FF46464F</color>
+    <color name="inv_palette_on_surface">#FFE4E2E6</color>
+    <color name="inv_palette_on_surface_variant">#FFC7C5D0</color>
+    <color name="inv_palette_outline">#FF908F99</color>
+    <color name="inv_media_full_art_scrim_start">#59000000</color>
+    <color name="inv_media_full_art_scrim_center">#33000000</color>
+    <color name="inv_media_full_art_scrim_end">#80000000</color>
+</resources>
