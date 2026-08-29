@@ -1,0 +1,107 @@
+name: Build InvQS DCRC (SystemUI + Settings)
+
+# Cara pakai:
+# 1. Taruh SystemUI.apk dan Settings.apk hasil dump ROM kalian sendiri di
+#    folder input/ (lihat config/patch.env untuk path & nama file).
+# 2. Sesuaikan config/patch.env (copy dari config/patch.env.example) sesuai
+#    ROM target kalian (nama class preference, xml target, dst).
+# 3. (Opsional) Set secrets KEYSTORE_BASE64 / KEYSTORE_PASSWORD / KEY_ALIAS /
+#    KEY_PASSWORD di repo Settings > Secrets kalau mau sign pakai key sendiri.
+#    Kalau tidak diisi, workflow generate debug keystore otomatis (buat testing).
+# 4. Jalankan lewat tab Actions > "Build InvQS DCRC" > Run workflow.
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "input/**"
+      - "patches/**"
+      - "config/**"
+      - ".github/workflows/build-invqs.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK build-tools (zipalign, apksigner)
+        uses: android-actions/setup-android@v3
+
+      - name: Install build-tools component
+        run: sdkmanager --install "build-tools;34.0.0"
+
+      - name: Add build-tools to PATH
+        run: echo "$ANDROID_SDK_ROOT/build-tools/34.0.0" >> "$GITHUB_PATH"
+
+      - name: Prepare config
+        run: |
+          if [ ! -f config/patch.env ]; then
+            cp config/patch.env.example config/patch.env
+            echo "Tidak ada config/patch.env, memakai config/patch.env.example (default)."
+          fi
+
+      - name: Verify input APKs exist
+        run: |
+          source config/patch.env
+          test -f "${SYSTEMUI_APK}" || { echo "::error::${SYSTEMUI_APK} tidak ditemukan, taruh di input/"; exit 1; }
+          test -f "${SETTINGS_APK}" || { echo "::error::${SETTINGS_APK} tidak ditemukan, taruh di input/"; exit 1; }
+
+      - name: Setup apktool
+        run: bash scripts/00_setup_tools.sh
+
+      - name: Decompile SystemUI.apk & Settings.apk
+        run: bash scripts/10_decompile.sh
+
+      - name: Patch SystemUI resources (qs_panel, footer, dimens, integers)
+        run: python3 scripts/20_patch_systemui_res.py
+
+      - name: Patch SystemUI smali (QSTileHost, QSPanelControllerBase, kelas Inv*)
+        run: python3 scripts/21_patch_systemui_smali.py
+
+      - name: Patch Settings (entry preference + kelas InvQsCustomControls)
+        run: |
+          source config/patch.env
+          export SETTINGS_SWITCH_PREF_CLASS SETTINGS_SEEKBAR_PREF_CLASS SETTINGS_TARGET_XML
+          python3 scripts/30_patch_settings.py
+
+      - name: Check for duplicate resource names (debug helper)
+        run: python3 scripts/25_check_duplicates.py
+
+      - name: Recompile APKs
+        run: bash scripts/40_recompile.sh
+
+      - name: Sign APKs
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: bash scripts/50_sign.sh
+
+      - name: Upload signed APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: invqs-dcrc-output
+          path: |
+            dist/SystemUI.apk
+            dist/Settings.apk
+          if-no-files-found: error
+
+      - name: Upload decompiled sources (buat debug kalau ada warning patch)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: invqs-dcrc-decompiled-debug
+          path: |
+            work/systemui_src
+            work/settings_src
+          if-no-files-found: ignore
+          retention-days: 3
