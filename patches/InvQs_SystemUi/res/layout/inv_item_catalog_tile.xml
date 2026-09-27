@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="4.0dip"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tile_body"
+            android:background="@drawable/inv_bg_tile_unavailable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48.0dip"
+            android:alpha="0.55">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/icon"
+                android:layout_width="26.0dip"
+                android:layout_height="26.0dip"
+                android:tint="@color/inv_icon_unavailable" />
+        </FrameLayout>
+        <ImageView
+            android:layout_gravity="end|center|top"
+            android:id="@+id/btn_add"
+            android:background="@drawable/inv_bg_badge"
+            android:padding="3.0dip"
+            android:layout_width="20.0dip"
+            android:layout_height="20.0dip"
+            android:src="@drawable/inv_ic_add"
+            android:tint="@color/inv_edit_badge_icon_tint"
+            android:contentDescription="Add" />
+    </FrameLayout>
+    <TextView
+        android:textSize="14.0sp"
+        android:textColor="@color/inv_text_secondary"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/tile_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4.0dip"
+        android:minHeight="36.0dip"
+        android:maxLines="2"
+        android:includeFontPadding="false"
+        android:fontFamily="google-sans" />
+</LinearLayout>

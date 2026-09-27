@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inv.exe.systemui.qs.ui.InvLaunchableFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:stateListAnimator="@null">
+
+    <FrameLayout
+        android:id="@+id/custom_image_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/inv_bg_media"
+        android:clipToOutline="true"
+        android:stateListAnimator="@null">
+
+        <inv.exe.systemui.qs.ui.InvGifImageView
+            android:id="@+id/custom_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/inv_bg_media"
+            android:clipToOutline="true"
+            android:contentDescription="Custom image"
+            android:scaleType="centerCrop" />
+
+        
+        <ImageView
+            android:id="@+id/custom_image_clear_badge"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/inv_bg_badge"
+            android:backgroundTint="@color/inv_tile_bg_off"
+            android:contentDescription="Clear image"
+            android:padding="9dp"
+            android:src="@drawable/inv_ic_restart_alt"
+            android:tint="@color/inv_icon_primary"
+            android:elevation="0dp"
+            android:translationZ="0dp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    
+    <ImageView
+        android:id="@+id/badge"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="top|start"
+        android:background="@drawable/inv_bg_badge"
+        android:contentDescription="Remove control"
+        android:padding="4dp"
+        android:src="@drawable/inv_ic_remove"
+        android:tint="@color/inv_edit_badge_icon_tint"
+        android:elevation="0dp"
+        android:translationZ="0dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/media_resize_handle"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/inv_bg_media_resize_handle"
+        android:contentDescription="Resize"
+        android:padding="6dp"
+        android:src="@drawable/inv_ic_resize_corner"
+        android:tint="@color/inv_edit_badge_icon_tint"
+        android:visibility="gone" />
+</inv.exe.systemui.qs.ui.InvLaunchableFrameLayout>

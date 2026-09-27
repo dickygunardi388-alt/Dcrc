@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inv.exe.systemui.qs.ui.InvLaunchableLinearLayout
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <FrameLayout
+        android:layout_width="64.0dip"
+        android:layout_height="64.0dip">
+        <inv.exe.systemui.qs.ui.InvLaunchableFrameLayout
+            android:id="@+id/tile_circle"
+            android:background="@drawable/inv_bg_tile_off"
+            android:focusable="true"
+            android:clickable="true"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:stateListAnimator="@null">
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/tile_icon"
+                android:layout_width="24.0dip"
+                android:layout_height="24.0dip"
+                android:tint="@color/inv_icon_primary" />
+        </inv.exe.systemui.qs.ui.InvLaunchableFrameLayout>
+        <ImageView
+            android:layout_gravity="start|center|top"
+            android:id="@+id/badge"
+            android:background="@drawable/inv_bg_badge"
+            android:padding="4.0dip"
+            android:visibility="gone"
+            android:layout_width="22.0dip"
+            android:layout_height="22.0dip"
+            android:src="@drawable/inv_ic_remove"
+            android:tint="@color/inv_edit_badge_icon_tint"
+            android:contentDescription="Remove"
+            android:translationZ="0.0dip"
+            android:elevation="0.0dip" />
+    </FrameLayout>
+    <TextView
+        android:textSize="14.0sp"
+        android:textColor="@color/inv_text_secondary"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/tile_label"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6.0dip"
+        android:minHeight="36.0dip"
+        android:maxLines="2"
+        android:includeFontPadding="false"
+        android:fontFamily="google-sans" />
+</inv.exe.systemui.qs.ui.InvLaunchableLinearLayout>
