@@ -1,0 +1,240 @@
+buka smali Lcom/android/systemui/qs/QSTileHost
+
+cari method init
+
+cari line ini
+
+iput-object v1, v0, Lcom/android/systemui/qs/QSTileHost;->mCustomTileStatePersister:Lcom/android/systemui/qs/external/CustomTileStatePersister;
+
+add ini di bawahnya
+
+invoke-static {p0}, Lcom/android/systemui/invmod/NativeTileAction;->setHost(Lcom/android/systemui/qs/QSTileHost;)V
+
+
+next buka Lcom/android/systemui/qs/QSPanelControllerBase ( ini buat hide media bawaan klo gk ada brrti make satunya tnya aja di group dcrc )
+
+cari .method public final switchTileLayout(Z)Z
+
+# hapus dari sini
+
+    iget-boolean p1, v1, Lcom/android/systemui/qs/QSPanel;->mUsingMediaPlayer:Z
+
+    .line 117
+    if-nez p1, :cond_79
+
+    .line 119
+    goto/16 :goto_f7
+
+    .line 121
+    :cond_79
+    iput-object v3, v1, Lcom/android/systemui/qs/QSPanel;->mMediaHostView:Landroid/view/ViewGroup;
+
+    .line 123
+    if-eqz v0, :cond_80
+
+    .line 125
+    iget-object p1, v1, Lcom/android/systemui/qs/QSPanel;->mHorizontalLinearLayout:Lcom/android/internal/widget/RemeasuringLinearLayout;
+
+    .line 127
+    goto :goto_81
+
+    .line 128
+    :cond_80
+    move-object p1, v1
+
+    .line 129
+    :goto_81
+    invoke-virtual {v3}, Landroid/view/ViewGroup;->getParent()Landroid/view/ViewParent;
+
+    .line 132
+    move-result-object v4
+
+    .line 133
+    check-cast v4, Landroid/view/ViewGroup;
+
+    .line 135
+    invoke-virtual {v1}, Lcom/android/systemui/qs/QSPanel;->getDumpableTag()Ljava/lang/String;
+
+    .line 138
+    move-result-object v6
+
+    .line 139
+    new-instance v7, Ljava/lang/StringBuilder;
+
+    .line 141
+    invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+
+    .line 144
+    const-string v8, "Reattaching media host: "
+
+    .line 146
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 149
+    invoke-virtual {v7, v0}, Ljava/lang/StringBuilder;->append(Z)Ljava/lang/StringBuilder;
+
+    .line 152
+    const-string v8, ", current "
+
+    .line 154
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 157
+    invoke-virtual {v7, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    .line 160
+    const-string v8, ", new "
+
+    .line 162
+    invoke-virtual {v7, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    .line 165
+    invoke-virtual {v7, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    .line 168
+    invoke-virtual {v7}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    .line 171
+    move-result-object v7
+
+    .line 172
+    invoke-static {v6, v7}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 175
+    if-eq v4, p1, :cond_f7
+
+    .line 177
+    if-eqz v4, :cond_b6
+
+    .line 179
+    invoke-virtual {v4, v3}, Landroid/view/ViewGroup;->removeView(Landroid/view/View;)V
+
+    .line 182
+    :cond_b6
+    invoke-virtual {p1, v3}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    .line 185
+    invoke-virtual {v3}, Landroid/view/ViewGroup;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    .line 188
+    move-result-object p1
+
+    .line 189
+    check-cast p1, Landroid/widget/LinearLayout$LayoutParams;
+
+    .line 191
+    const/4 v4, -0x2
+
+    .line 192
+    iput v4, p1, Landroid/widget/LinearLayout$LayoutParams;->height:I
+
+    .line 194
+    if-eqz v0, :cond_c6
+
+    .line 196
+    move v4, v2
+
+    .line 197
+    goto :goto_c7
+
+    .line 198
+    :cond_c6
+    const/4 v4, -0x1
+
+    .line 199
+    :goto_c7
+    iput v4, p1, Landroid/widget/LinearLayout$LayoutParams;->width:I
+
+    .line 201
+    if-eqz v0, :cond_ce
+
+    .line 203
+    const/high16 v4, 0x3f800000  # 1.0f
+
+    .line 205
+    goto :goto_cf
+
+    .line 206
+    :cond_ce
+    const/4 v4, 0x0
+
+    .line 207
+    :goto_cf
+    iput v4, p1, Landroid/widget/LinearLayout$LayoutParams;->weight:F
+
+    .line 209
+    if-eqz v0, :cond_db
+
+    .line 211
+    instance-of v4, v1, Lcom/android/systemui/qs/QuickQSPanel;
+
+    .line 213
+    xor-int/2addr v4, v5
+
+    .line 214
+    if-eqz v4, :cond_d9
+
+    .line 216
+    goto :goto_db
+
+    .line 217
+    :cond_d9
+    move v4, v2
+
+    .line 218
+    goto :goto_e6
+
+    .line 219
+    :cond_db
+    :goto_db
+    iget v4, v1, Lcom/android/systemui/qs/QSPanel;->mMediaTotalBottomMargin:I
+
+    .line 221
+    invoke-virtual {v1}, Landroid/widget/LinearLayout;->getPaddingBottom()I
+
+    .line 224
+    move-result v6
+
+    .line 225
+    sub-int/2addr v4, v6
+
+    .line 226
+    invoke-static {v4, v2}, Ljava/lang/Math;->max(II)I
+
+    .line 229
+    move-result v4
+
+    .line 230
+    :goto_e6
+    iput v4, p1, Landroid/widget/LinearLayout$LayoutParams;->bottomMargin:I
+
+    .line 232
+    instance-of v4, v1, Lcom/android/systemui/qs/QuickQSPanel;
+
+    .line 234
+    if-eqz v4, :cond_f1
+
+    .line 236
+    if-nez v0, :cond_f1
+
+    .line 238
+    iget v4, v1, Lcom/android/systemui/qs/QSPanel;->mMediaTopMargin:I
+
+    .line 240
+    goto :goto_f2
+
+    .line 241
+    :cond_f1
+    move v4, v2
+
+    .line 242
+    :goto_f2
+    iput v4, p1, Landroid/widget/LinearLayout$LayoutParams;->topMargin:I
+
+    .line 244
+    invoke-virtual {v3, p1}, Landroid/view/ViewGroup;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
+
+    .line 247
+    :cond_f7
+    
+# stop sampai disini
