@@ -1,0 +1,14 @@
+taro ini bebas dimana aja di top-level xml / display xml / interface xml kalean
+
+<Preference
+    android:key="invos_qs_custom_controls_entry"
+    android:title="Custom Controls"
+    android:summary="Custom name and Custom Image"
+    android:persistent="false"
+    android:fragment="inv.exe.settings.fragment.InvQsCustomControls" />
+    
+lalu buka inv_qs_custom_contros.xml 
+ubah ke preference default kalian
+
+rvos.settings.support.preferences.SystemSettingSwitchPreference
+rvos.settings.support.preferences.SystemSettingSeekBarPreference
