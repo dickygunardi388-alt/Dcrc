@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fix dari XuMu di grup !nv - Showcase (Telegram), 15 Agustus:
+     id yang dipakai smali InvNativeTileAction tapi belum tentu ada di ROM
+     target, didaftarkan manual supaya apktool tidak error "resource id
+     not found" saat recompile. -->
+<resources>
+    <item type="id" name="inv_tile_anim_last_bg_state" />
+    <item type="id" name="inv_tile_anim_last_state" />
+    <item type="id" name="inv_tile_anim_last_fg_state" />
+</resources>

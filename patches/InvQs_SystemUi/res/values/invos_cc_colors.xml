@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<color name="cc_page_bg">@android:color/system_accent2_100</color>
+    <color name="cc_surface">@android:color/system_neutral1_0</color>
+    <color name="cc_surface_soft">@android:color/system_accent2_50</color>
+    <color name="cc_surface_variant">@android:color/system_neutral2_100</color>
+    <color name="cc_outline">@android:color/system_neutral2_200</color>
+
+    <color name="cc_text_primary">@android:color/system_neutral1_900</color>
+    <color name="cc_text_secondary">@android:color/system_neutral2_700</color>
+    <color name="cc_text_on_accent">@android:color/system_accent1_0</color>
+
+    <color name="cc_accent">@android:color/system_accent1_600</color>
+    <color name="cc_accent_soft">@android:color/system_accent1_100</color>
+    <color name="cc_on_accent">@android:color/system_accent1_0</color>
+
+    <color name="cc_icon">@android:color/system_neutral1_900</color>
+    <color name="cc_icon_on_accent">@android:color/system_accent1_0</color>
+
+    <color name="cc_tile_off">@android:color/system_neutral1_0</color>
+    <color name="cc_tile_on">@android:color/system_accent1_600</color>
+
+    <color name="cc_pill">@android:color/system_neutral1_0</color>
+    <color name="cc_pill_on">@android:color/system_accent1_100</color>
+
+    <color name="cc_slider_track">@android:color/system_neutral1_0</color>
+    <color name="cc_slider_fill">@android:color/system_accent1_600</color>
+    <color name="cc_badge">@android:color/system_accent1_600</color>
+    <color name="cc_badge_on_badge">@android:color/system_accent1_0</color>
+    <color name="cc_header_btn">@android:color/system_neutral1_0</color>
+<color name="cc_media_fallback">#33211B24</color>
+    <color name="cc_media_outline">#73FFFFFF</color>
+    <color name="cc_media_art_fallback">#33FFFFFF</color>
+    <color name="cc_media_text">#FFFFFFFF</color>
+    <color name="cc_media_text_secondary">#BFFFFFFF</color>
+
+</resources>
