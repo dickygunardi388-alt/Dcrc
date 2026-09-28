@@ -7,9 +7,17 @@ APKTOOL=tools/apktool
 rm -rf work/systemui_src work/settings_src
 mkdir -p work
 
-if [ -n "${FRAMEWORK_RES_APK:-}" ] && [ -f "${FRAMEWORK_RES_APK}" ]; then
-  echo "==> Installing framework-res.apk into apktool framework cache"
+if [ -n "${FRAMEWORK_RES_APK:-}" ]; then
+  if [ ! -f "${FRAMEWORK_RES_APK}" ]; then
+    echo "::error::FRAMEWORK_RES_APK=${FRAMEWORK_RES_APK} diisi tapi file tidak ada di repo" >&2
+    exit 1
+  fi
+  echo "==> Installing framework-res.apk (${FRAMEWORK_RES_APK}) into apktool framework cache"
   "$APKTOOL" if "${FRAMEWORK_RES_APK}"
+else
+  echo "::warning::FRAMEWORK_RES_APK kosong -> apktool pakai framework bawaannya (BUKAN framework ROM kalian)."
+  echo "::warning::Atribut framework non-publik (mis. maxCollapsedHeight) bisa ter-decode dengan nama salah,"
+  echo "::warning::lalu recompile gagal 'is incompatible with attribute ...'. Isi FRAMEWORK_RES_APK di config/patch.env."
 fi
 
 # File *-res.apk tambahan (shared library resources, mis. org.lineageos.platform-res.apk)

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Bungkus APK hasil build jadi modul Magisk / KernelSU (systemless, tidak
 # menyentuh partisi sistem). Satu modul per APK supaya bisa dites terpisah.
+# Path APK sudah tertanam di zip (system/system_ext/priv-app/<App>/<App>.apk),
+# sesuai ROM LineageOS 20 kalian.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -8,16 +10,16 @@ mkdir -p dist work
 RUN="${GITHUB_RUN_NUMBER:-1}"
 
 build_module() {
-  local id="$1" name="$2" pkg="$3" dir_name="$4" apk_name="$5" apk="$6"
+  local id="$1" name="$2" pkg="$3" rel_dir="$4" apk_name="$5" apk="$6"
   if [ ! -f "$apk" ]; then
     echo "!! $apk tidak ada, modul $id dilewati"
     return 0
   fi
   local w="work/module_${id}"
   rm -rf "$w"
-  mkdir -p "$w/apk"
+  mkdir -p "$w/$rel_dir"
   cp -r module_template/. "$w/"
-  cp "$apk" "$w/apk/$apk_name"
+  cp "$apk" "$w/$rel_dir/$apk_name"
 
   cat > "$w/module.prop" <<PROP
 id=${id}
@@ -30,13 +32,15 @@ PROP
 
   cat > "$w/config.sh" <<CFG
 PKG="${pkg}"
-DIR_NAME="${dir_name}"
+REL_DIR="${rel_dir}"
 APK_NAME="${apk_name}"
 CFG
 
   (cd "$w" && zip -q -r -X -6 "../../dist/${id}-v${RUN}.zip" .)
-  echo "==> dist/${id}-v${RUN}.zip"
+  echo "==> dist/${id}-v${RUN}.zip  (isi: ${rel_dir}/${apk_name})"
 }
 
-build_module invqs-systemui "InvQS SystemUI" com.android.systemui SystemUI SystemUI.apk dist/SystemUI.apk
-build_module invqs-settings "InvQS Settings" com.android.settings Settings Settings.apk dist/Settings.apk
+build_module invqs-systemui "InvQS SystemUI" com.android.systemui \
+  system/system_ext/priv-app/SystemUI SystemUI.apk dist/SystemUI.apk
+build_module invqs-settings "InvQS Settings" com.android.settings \
+  system/system_ext/priv-app/Settings Settings.apk dist/Settings.apk

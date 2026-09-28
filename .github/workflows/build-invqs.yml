@@ -104,6 +104,9 @@ jobs:
           PLATFORM_CERT_BASE64: ${{ secrets.PLATFORM_CERT_BASE64 }}
         run: bash scripts/50_sign.sh
 
+      - name: Validate built APKs (info, tidak menggagalkan build)
+        run: bash scripts/55_validate_apks.sh
+
       - name: Build Magisk / KernelSU modules
         run: bash scripts/60_build_modules.sh
 
