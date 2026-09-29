@@ -20,6 +20,9 @@ if [ -n "${PLATFORM_PK8_BASE64:-}" ] && [ -n "${PLATFORM_CERT_BASE64:-}" ]; then
   echo "${PLATFORM_PK8_BASE64}"  | base64 -d > keystore/platform.pk8
   echo "${PLATFORM_CERT_BASE64}" | base64 -d > keystore/platform.x509.pem
   SIGN_MODE=platform
+elif [ -f keystore/platform.pk8 ] && [ -f keystore/platform.x509.pem ]; then
+  echo "==> Using platform key detected by 45_detect_platform_key.sh (cocok dengan APK asli)"
+  SIGN_MODE=platform
 elif [ -n "${KEYSTORE_BASE64}" ]; then
   echo "==> Using keystore from KEYSTORE_BASE64 secret"
   echo "${KEYSTORE_BASE64}" | base64 -d > keystore/release.jks
@@ -64,5 +67,25 @@ for name in SystemUI Settings; do
 
   apksigner verify "$signed" && echo "==> ${signed} verified OK"
 done
+
+# Tandai kalau tanda tangan hasil build SAMA dengan APK asli (dipakai 60_build_modules.sh)
+rm -f dist/KEY_MATCHES_ORIGINAL
+cert_sha() {
+  apksigner verify --print-certs "$1" 2>/dev/null \
+    | grep -m1 'certificate SHA-256 digest' | awk '{print $NF}' | tr 'A-F' 'a-f'
+}
+ALL_MATCH=1
+for pair in "SystemUI:${SYSTEMUI_APK:-input/SystemUI.apk}" "Settings:${SETTINGS_APK:-input/Settings.apk}"; do
+  n="${pair%%:*}"; orig="${pair#*:}"
+  [ -f "dist/$n.apk" ] || continue
+  a="$(cert_sha "dist/$n.apk")"; b="$(cert_sha "$orig")"
+  if [ -n "$a" ] && [ "$a" = "$b" ]; then
+    echo "==> $n: tanda tangan SAMA dengan APK asli"
+  else
+    echo "!! $n: tanda tangan BERBEDA dari APK asli"
+    ALL_MATCH=0
+  fi
+done
+[ "$ALL_MATCH" = "1" ] && touch dist/KEY_MATCHES_ORIGINAL
 
 echo "==> Signing done. Final APKs in dist/SystemUI.apk and dist/Settings.apk"

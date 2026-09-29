@@ -94,6 +94,9 @@ jobs:
       - name: Recompile APKs
         run: bash scripts/40_recompile.sh
 
+      - name: Detect platform signing key (info)
+        run: bash scripts/45_detect_platform_key.sh
+
       - name: Sign APKs
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
@@ -115,7 +118,7 @@ jobs:
         with:
           name: invqs-dcrc-modules
           path: dist/invqs-*.zip
-          if-no-files-found: error
+          if-no-files-found: warn
 
       - name: Upload signed APKs
         uses: actions/upload-artifact@v4

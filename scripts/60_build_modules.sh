@@ -6,8 +6,20 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
+source config/patch.env 2>/dev/null || true
 mkdir -p dist work
 RUN="${GITHUB_RUN_NUMBER:-1}"
+
+# Pengaman: SystemUI/Settings yang tanda tangannya beda dari aslinya membuat HP
+# bootloop (Settings: system_server crash "Signature mismatch ... shared user";
+# SystemUI: crash loop karena tidak dapat izin signature). Jangan bungkus jadi
+# modul kecuali tanda tangannya terbukti sama dengan APK asli.
+if [ ! -f dist/KEY_MATCHES_ORIGINAL ] && [ "${ALLOW_KEY_MISMATCH:-0}" != "1" ]; then
+  echo "::warning::Modul TIDAK dibuat: tanda tangan APK hasil build berbeda dari APK asli."
+  echo "!! Memasang APK bertanda tangan beda sebagai modul akan membuat HP bootloop."
+  echo "!! (Paksa dengan ALLOW_KEY_MISMATCH=1 di config/patch.env - TIDAK disarankan.)"
+  exit 0
+fi
 
 build_module() {
   local id="$1" name="$2" pkg="$3" rel_dir="$4" apk_name="$5" apk="$6"
