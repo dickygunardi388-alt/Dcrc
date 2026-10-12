@@ -1,0 +1,18 @@
+Masukin semua bahan
+
+evl_ancient_battery.xml langsung copas aja ke res/values, nanti otomatis masuk ke xml masing masing pas recompile
+
+cek file compare batterymetterview
+
+bagian method terutama invoke-****Lcom/evillium/systemui/battery/EvlBatteryMeterBridge;->*****
+
+1. onAttachedToWindow()V
+2. onDarkChanged(Ljava/util/ArrayList;FI)V
+3. onDetachedFromWindow()V 
+
+yang batterymetterviewnya gak ada onAttachedToWindow()V dan onDetachedFromWindow()V  bisa langsung copas dari compare
+
+Controller settings cari sendiri ya
+
+Credit
+AncientOS
