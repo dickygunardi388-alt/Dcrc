@@ -79,12 +79,6 @@ jobs:
           export SETTINGS_SWITCH_PREF_CLASS SETTINGS_SEEKBAR_PREF_CLASS SETTINGS_TARGET_XML
           python3 scripts/30_patch_settings.py
 
-      - name: Patch addon - InvDynamicIsland (opsional)
-        run: python3 scripts/26_patch_dynamic_island.py
-
-      - name: Patch addon - EasyBattreyAncient (opsional)
-        run: python3 scripts/27_patch_easybattery.py
-
       - name: Check for duplicate resource names (debug helper)
         run: python3 scripts/25_check_duplicates.py
 
