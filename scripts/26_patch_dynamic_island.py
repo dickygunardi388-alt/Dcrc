@@ -457,39 +457,6 @@ NEW_PHONESTATUSBAR_METHODS = '''
 '''
 
 
-# ---------------------------------------------------------------------------
-# Fix dari XuMu (grup !nv, 28 Mei): overlay window pulau dinamis pakai tipe
-# WindowManager.LayoutParams TYPE_KEYGUARD_DIALOG (0x7d9 / 2009) -- window
-# khusus dialog di atas keyguard, punya aturan layering sendiri di AOSP
-# (WindowManagerPolicy.java) yang beda dari overlay biasa. Ini yang bikin
-# posisi/animasi pulau jadi kacau terutama pas screen record. Diganti ke
-# TYPE_PHONE (0x7d2 / 2002), tipe overlay umum tanpa perlakuan khusus itu.
-# ---------------------------------------------------------------------------
-def fix_window_type():
-    f = find_smali_file("inv/systemui/dynamic/InvDynamicIslandView.smali")
-    if not f:
-        warn("InvDynamicIslandView.smali tidak ketemu — lewati fix window type "
-             "(screen record bisa tetap glitch)")
-        return
-    text = f.read_text(encoding="utf-8")
-    m = re.search(
-        r'(const/16 v1, )0x7d9(\s*\n\s*iput v1, v0, '
-        r'Landroid/view/WindowManager\$LayoutParams;->type:I)',
-        text,
-    )
-    if not m:
-        if "const/16 v1, 0x7d2" in text and "WindowManager$LayoutParams;->type:I" in text:
-            print("==> InvDynamicIslandView.smali: window type sudah 0x7d2 (TYPE_PHONE), skip")
-        else:
-            warn("InvDynamicIslandView.smali: anchor konstanta window type (0x7d9) tidak "
-                 "ketemu persis — cek manual fix dari XuMu kalau screen record masih glitch")
-        return
-    text = text[: m.start()] + m.group(1) + "0x7d2" + m.group(2) + text[m.end():]
-    f.write_text(text, encoding="utf-8")
-    print("==> InvDynamicIslandView.smali: window type diganti TYPE_KEYGUARD_DIALOG (0x7d9) "
-          "-> TYPE_PHONE (0x7d2), fix glitch screen record dari XuMu")
-
-
 def patch_phone_status_bar_view():
     f = find_smali_file("com/android/systemui/statusbar/phone/PhoneStatusBarView.smali")
     if not f:
@@ -514,7 +481,6 @@ def main():
 
     overlay_resources()
     extract_smali_classes()
-    fix_window_type()
     patch_status_bar()
     patch_notification_media_manager()
     patch_phone_status_bar_view()
